@@ -48,7 +48,7 @@
     "technicalindicators": "^3.1.0",
     "telegraf": "^3.38.0",
     "ts-node": "^8.10.1",
-    "tulind": "^0.8.15",
+    "tulind": "^0.8.20",
     "twig": "^1.15.1",
     "typescript": "^3.9.2",
     "winston": "^3.2.1",

@@ -435,7 +435,7 @@ module.exports = class Http {
       });
     });
 
-    const ip = this.systemUtil.getConfig('webserver.ip', '0.0.0.0');
+    const ip = this.systemUtil.getConfig('webserver.ip', '127.0.0.1');
     const port = this.systemUtil.getConfig('webserver.port', 8080);
 
     app.listen(port, ip);

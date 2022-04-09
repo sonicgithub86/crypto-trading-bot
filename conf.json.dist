@@ -9,8 +9,8 @@
             "secret": null
         },
         "binance": {
-            "key": null,
-            "secret": null
+            "key": "attTVKB7HASba6x4Ffi8zEWPnNtwsVm0pHrjWS45vmMNNqCwyhbObKXnX4STf08z",
+            "secret": "aWMm8xinZrCUu5Nm6IfHHNmabf5oUMoC0eTtSwkTPzNyPkgySBDodURMhAIL8PYR"
         },
         "binance_futures": {
             "key": null,
