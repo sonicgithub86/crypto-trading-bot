@@ -9,37 +9,20 @@ let flags = {
   stoch30Up: undefined,
   stoch30Down: undefined,
   stoch30CrossedUp: undefined,
-  stoch30CrossedDown: undefined,
-  stoch5Up: undefined,
-  stoch5Down: undefined,
-  stoch5CrossedUp: undefined,
-  stoch5CrossedDown: undefined,
-  stoch1Up: undefined,
-  stoch1Down: undefined,
-  stoch1CrossedUp: undefined,
-  stoch1CrossedDown: undefined
+  stoch30CrossedDown: undefined
 };
 
-let resetAllFlags = function resetAllFlags() {
+const resetAllFlags = function resetAllFlags() {
   flags = {
     emaCrossUp: false,
     emaCrossDown: false,
     stoch30Up: undefined,
     stoch30Down: undefined,
     stoch30CrossedUp: undefined,
-    stoch30CrossedDown: undefined,
-    stoch5Up: undefined,
-    stoch5Down: undefined,
-    stoch5CrossedUp: undefined,
-    stoch5CrossedDown: undefined,
-    stoch1Up: undefined,
-    stoch1Down: undefined,
-    stoch1CrossedUp: undefined,
-    stoch1CrossedDown: undefined
+    stoch30CrossedDown: undefined
   };
-}
+};
 
-//   stoch1Down;
 module.exports = class {
   getName() {
     return 'stocha_strat';
@@ -58,16 +41,16 @@ module.exports = class {
       k: 3,
       d: 3
     });
-    indicatorBuilder.add('stoch5', 'stoch', '5m', {
-      length: 5,
-      k: 3,
-      d: 3
-    });
-    indicatorBuilder.add('stoch1', 'stoch', '1m', {
-      length: 5,
-      k: 3,
-      d: 3
-    });
+    // indicatorBuilder.add('stoch5', 'stoch', '5m', {
+    //   length: 5,
+    //   k: 3,
+    //   d: 3
+    // });
+    // indicatorBuilder.add('stoch1', 'stoch', '1m', {
+    //   length: 5,
+    //   k: 3,
+    //   d: 3
+    // });
   }
 
   async period(indicatorPeriod, options) {
@@ -76,12 +59,10 @@ module.exports = class {
       // console.log(Object.keys(currentValues));
     }
 
-    const ema12 = currentValues.ema12;
-    const ema34 = currentValues.ema34;
+    const { ema12 } = currentValues;
+    const { ema34 } = currentValues;
 
-    const stoch30 = currentValues.stoch30;
-    const stoch5 = currentValues.stoch5;
-    const stoch1 = currentValues.stoch1;
+    const { stoch30 } = currentValues;
 
     const emptySignal = SignalResult.createEmptySignal(currentValues);
 
@@ -100,16 +81,11 @@ module.exports = class {
 
         flags.stoch30CrossedUp =
           flags.stoch30CrossedUp ||
-          (typeof flags.stoch30Up !== 'undefined' &&
-            flags.stoch30Up !== stoch30Up &&
-            stoch30Up
-          );
+          (typeof flags.stoch30Up !== 'undefined' && flags.stoch30Up !== stoch30Up && stoch30Up);
 
         flags.stoch30CrossedDown =
           flags.stoch30CrossedDown ||
-          (typeof flags.stoch30Down !== 'undefined' &&
-          flags.stoch30Down !== stoch30Down &&
-          stoch30Down);
+          (typeof flags.stoch30Down !== 'undefined' && flags.stoch30Down !== stoch30Down && stoch30Down);
 
         if (currentEma30Up && flags.stoch30CrossedUp) {
           console.log('stoch30CrossedUp');
